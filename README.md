@@ -1,5 +1,141 @@
 # AI Trip Planner
 
+An AI-powered trip planning web application built with React and TypeScript. It helps users create personalized day-by-day travel itineraries based on their destination, travel dates, budget, interests, transportation preferences, and other requirements.
+
+## Features
+
+- 🗺️ Personalized AI-generated travel itineraries
+- 📅 Day-by-day trip planning
+- 💰 Budget-based planning
+- ❤️ Interest and activity preferences
+- 🚗 Transportation preferences
+- 🍽️ Dietary preferences
+- ✏️ Interactive itinerary editing
+- ✅ Mark activities as completed
+- 🔄 Retry failed AI requests
+- 📱 Responsive and user-friendly interface
+- 🔐 Secure AI integration through a backend function
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase Edge Functions
+- Google Gemini API
+
+## How It Works
+
+The application follows this flow:
+
+1. The user enters their travel preferences through the planning wizard.
+2. The frontend sends the structured preferences to the Supabase backend.
+3. The backend securely communicates with the Gemini API.
+4. Gemini generates a structured JSON itinerary.
+5. The backend validates the response.
+6. The frontend displays the itinerary as an interactive day-by-day travel plan.
+
+## Project Structure
+
+```text
+AI-Trip-Planner/
+│
+├── src/
+│   ├── components/
+│   ├── api.ts
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── types.ts
+│   └── vite-env.d.ts
+│
+├── supabase/
+│   ├── functions/
+│   │   └── generate-itinerary/
+│   │       └── index.ts
+│   └── config.toml
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── tailwind.config.js
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+# AI Trip Planner
+
+An AI-powered trip planning web application built with React and TypeScript. It helps users create personalized day-by-day travel itineraries based on their destination, travel dates, budget, interests, transportation preferences, and other requirements.
+
+## Features
+
+- 🗺️ Personalized AI-generated travel itineraries
+- 📅 Day-by-day trip planning
+- 💰 Budget-based planning
+- ❤️ Interest and activity preferences
+- 🚗 Transportation preferences
+- 🍽️ Dietary preferences
+- ✏️ Interactive itinerary editing
+- ✅ Mark activities as completed
+- 🔄 Retry failed AI requests
+- 📱 Responsive and user-friendly interface
+- 🔐 Secure AI integration through a backend function
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase Edge Functions
+- Google Gemini API
+
+## How It Works
+
+The application follows this flow:
+
+1. The user enters their travel preferences through the planning wizard.
+2. The frontend sends the structured preferences to the Supabase backend.
+3. The backend securely communicates with the Gemini API.
+4. Gemini generates a structured JSON itinerary.
+5. The backend validates the response.
+6. The frontend displays the itinerary as an interactive day-by-day travel plan.
+
+## Project Structure
+
+```text
+AI-Trip-Planner/
+│
+├── src/
+│   ├── components/
+│   ├── api.ts
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── types.ts
+│   └── vite-env.d.ts
+│
+├── supabase/
+│   ├── functions/
+│   │   └── generate-itinerary/
+│   │       └── index.ts
+│   └── config.toml
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── tailwind.config.js
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+# AI Trip Planner
+
 A polished React + Vite web application that generates personalized day-by-day trip itineraries using AI. Users describe their travel requirements through a guided multi-step planning wizard, and the AI creates a structured itinerary they can interact with and customize.
 
 ## Project Overview
@@ -101,16 +237,19 @@ The LLM is instructed to return JSON with this exact structure:
 The app validates the AI response at two layers:
 
 **Server-side (edge function):**
+
 - JSON parsing with fallback extraction (strips markdown fences, extracts JSON from text)
 - Schema validation: checks for title, summary, days array, stop fields, types
 - Returns a 502 error with a descriptive message if validation fails
 
 **Client-side (frontend):**
+
 - Re-parses JSON and validates all required fields
 - Normalizes: generates unique IDs for stops/days, fills missing optional fields with defaults
 - Throws `ApiError` with user-friendly messages for each failure case
 
 Handled failure cases:
+
 1. Malformed JSON
 2. Invalid JSON structure
 3. Missing required fields
@@ -151,10 +290,10 @@ npm install
 
 The following are pre-populated in the Bolt environment:
 
-| Variable | Purpose |
-|---|---|
-| `VITE_SUPABASE_URL` | Supabase project URL (client-side) |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anon key (client-side) |
+| Variable                   | Purpose                            |
+| -------------------------- | ---------------------------------- |
+| `VITE_SUPABASE_URL`      | Supabase project URL (client-side) |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon key (client-side)    |
 
 The OpenAI API key is set as a server-side edge function secret (`OPENAI_API_KEY`) and is NOT exposed to the frontend.
 
@@ -184,6 +323,7 @@ npm run build
 ## AI Usage Note
 
 This project was built with the assistance of Bolt, an AI coding assistant. The AI helped with:
+
 - Project structure and component architecture
 - Writing React components and TypeScript types
 - Implementing the edge function and validation logic
